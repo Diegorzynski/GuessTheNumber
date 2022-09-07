@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
-<bean id="numberGenerator" class="academy.learnprogramming.NumberGeneratorImp"/>
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="academy.learnprogramming"/>
+
+
+
+<!--no longer needed since we will use @ComponentScan (04)
+    <context:annotation-config/>
+
+
+ all beans removed we will use component scan (05)
+    <bean id="numberGenerator" class="academy.learnprogramming.NumberGeneratorImp"/>
+
+   <!- constructor DI (01)
+   <bean id = "game" class="academy.learnprogramming.GameImpl">
+        <constructor-arg ref="numberGenerator"/>
+    </bean>
+
+    Setter DI
+    removing all beans (05)
+    <bean id = "game" class="academy.learnprogramming.GameImpl">
+        <!-no longer needed for annotations (02)
+        <property name="numberGenerator" ref="numberGenerator"/>
+    </bean>
+     no longer necessary since we are using @Autowired (03)
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/> -->
 
 </beans>
