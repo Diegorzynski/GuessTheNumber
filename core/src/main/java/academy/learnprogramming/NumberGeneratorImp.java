@@ -1,25 +1,31 @@
 package academy.learnprogramming;
 
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-
+@Component
 public class NumberGeneratorImp implements NumberGenerator{
 
     // == fields ==
     private final Random random = new Random();
+    @Getter
+    private final int maxNumber;
+    @Getter
+    private final int minNumber;
 
-    private int maxNumber = 100;
+    // == constructors ==
+    @Autowired
+    public NumberGeneratorImp(@MaxNumber int maxNumber, @MinNumber int minNumber) {
+        this.maxNumber = maxNumber;
+        this.minNumber = minNumber;
+    }
 
     // == public methods ==
     @Override
     public int next() {
-        return random.nextInt(maxNumber);
-    }
-
-    @Override
-    public int getMaxNumber() {
-        return maxNumber;
+        return random.nextInt(maxNumber - minNumber) + minNumber;
     }
 }
